@@ -94,15 +94,28 @@ public class SourceMultiblockCapability extends MultiblockCapability<Integer> {
             if (sourceTile == null) return list;
             int sum = list.stream().reduce(0, Integer::sum);
             int initialSource = sourceTile.getSource();
+            MultiblockedExtendedCompat.LOGGER.info("initial_source_value {}", initialSource);
             MultiblockedExtendedCompat.LOGGER.info("handle_inner_sum {}", sum);
             if (io == IO.IN) {
-                sum = simulate ? initialSource -(initialSource-sum) : sourceTile.removeSource(sum);
-            }
+                int cost = sum;
+                MultiblockedExtendedCompat.LOGGER.info("recipe_source_cost {}", cost);
+                if (initialSource >= cost) {
+                    MultiblockedExtendedCompat.LOGGER.info("simulated {}", simulate);
+                    if (!simulate) {
+                //sum = simulate ? initialSource -(initialSource-sum) : sourceTile.removeSource(sum);
+                sum = sourceTile.removeSource(cost);
+                    MultiblockedExtendedCompat.LOGGER.info("did_i_run?");
+            }}}
             else if (io == IO.OUT) {
-                sum = simulate ? Math.abs(initialSource -(initialSource+sum)) : sourceTile.addSource(sum);
+                if (!simulate) {
+                    if (initialSource + sum <= sourceTile.getMaxSource()) {
+                        //sum = simulate ? Math.abs(initialSource -(initialSource+sum)) : sourceTile.addSource(sum);
+                        sum = sourceTile.addSource(sum);
+                        MultiblockedExtendedCompat.LOGGER.info("did_i_run?_2");
+                    }
+                }
             }
-            MultiblockedExtendedCompat.LOGGER.info("handle_inner_sum_2 {}", sum);
-            return sum <= 0 ? null : Collections.singletonList(sum);
+            return sum <= 0  ? null : Collections.singletonList(sum);
         }
         public int currentSource = -1;
         @Override
