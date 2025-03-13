@@ -94,24 +94,24 @@ public class SourceMultiblockCapability extends MultiblockCapability<Integer> {
             if (sourceTile == null) return list;
             int sum = list.stream().reduce(0, Integer::sum);
             int initialSource = sourceTile.getSource();
-            MultiblockedExtendedCompat.LOGGER.info("initial_source_value {}", initialSource);
             MultiblockedExtendedCompat.LOGGER.info("handle_inner_sum {}", sum);
             if (io == IO.IN) {
-                int cost = sum;
-                MultiblockedExtendedCompat.LOGGER.info("recipe_source_cost {}", cost);
-                if (initialSource >= cost) {
-                    MultiblockedExtendedCompat.LOGGER.info("simulated {}", simulate);
+                MultiblockedExtendedCompat.LOGGER.info("started with {} source", initialSource);
+                if (initialSource >= sum) {
                     if (!simulate) {
-                //sum = simulate ? initialSource -(initialSource-sum) : sourceTile.removeSource(sum);
-                sum = sourceTile.removeSource(cost);
-                    MultiblockedExtendedCompat.LOGGER.info("did_i_run?");
-            }}}
+                        sourceTile.removeSource(sum);
+                    MultiblockedExtendedCompat.LOGGER.info("removed {} source", sum);
+                    }
+                    sum = 0;
+                }
+            }
             else if (io == IO.OUT) {
-                if (!simulate) {
-                    if (initialSource + sum <= sourceTile.getMaxSource()) {
-                        //sum = simulate ? Math.abs(initialSource -(initialSource+sum)) : sourceTile.addSource(sum);
-                        sum = sourceTile.addSource(sum);
-                        MultiblockedExtendedCompat.LOGGER.info("did_i_run?_2");
+                if (initialSource + sum <= sourceTile.getMaxSource()) {
+                    if (!simulate) {
+                        sourceTile.addSource(sum);
+                        MultiblockedExtendedCompat.LOGGER.info("added {} source", sum);
+                    } else {
+                        sum = 0;
                     }
                 }
             }
@@ -120,7 +120,6 @@ public class SourceMultiblockCapability extends MultiblockCapability<Integer> {
         public int currentSource = -1;
         @Override
         protected boolean hasInnerChanged() {
-            MultiblockedExtendedCompat.LOGGER.info("sourcestring {}", currentSource);
             ISourceTile sourceTile = getContainer();
             if (sourceTile == null) return false;
             if (currentSource == sourceTile.getSource())
