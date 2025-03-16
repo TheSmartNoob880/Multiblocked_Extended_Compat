@@ -1,0 +1,10 @@
+{
+  "package": "com.thesmartnoob880.mbdextcompat.mixin",
+  "required": true,
+  "refmap": "mixins.mbdextcompat.refmap.json",
+  "plugin": "com.thesmartnoob880.mbdextcompat.mixin.MixinPlugin",
+  "minVersion": "0.8",
+  "mixins": [
+    "MultiblockRecipeJSMixin"
+  ]
+}

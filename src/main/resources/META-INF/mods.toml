@@ -18,20 +18,20 @@ modId="mbdextcompat" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
 version="${file.jarVersion}" #mandatory
  # A display name for the mod
-displayName="Example Ars Nouveau Addon" #mandatory
+displayName="Multiblocked Addon" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification <here>
 #updateJSONURL="http://myurl.me/" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
 #displayURL="http://example.com/" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
-#logoFile="examplemod.png" #optional
+#logoFile="mbdextcompat.png" #optional
 # A text field displayed in the mod UI
 credits="Thanks for this example mod goes to Java" #optional
 # A text field displayed in the mod UI
-authors="Love, Cheese and small house plants" #optional
+authors="TheSmartNoob880, Emperdog" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-Starbuncles will conquer the world
+An addon mod for Multiblocked that adds aditional compatability with other mods.
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.mbdextcompat]] #optional

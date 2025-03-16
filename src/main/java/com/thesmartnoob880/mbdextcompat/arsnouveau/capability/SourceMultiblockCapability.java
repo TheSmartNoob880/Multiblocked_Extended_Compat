@@ -89,7 +89,7 @@ public class SourceMultiblockCapability extends MultiblockCapability<Integer> {
         }
 
         @Override
-        protected List<Integer> handleRecipeInner(IO io, Recipe recipe, List<Integer> list, @Nullable String s, boolean simulate) {
+        protected List<Integer> handleRecipeInner(IO io, Recipe recipe, List<Integer> list, @Nullable String slot, boolean simulate) {
             ISourceTile sourceTile =getContainer();
             if (sourceTile == null) return list;
             int sum = list.stream().reduce(0, Integer::sum);
@@ -97,23 +97,29 @@ public class SourceMultiblockCapability extends MultiblockCapability<Integer> {
             MultiblockedExtendedCompat.LOGGER.info("handle_inner_sum {}", sum);
             if (io == IO.IN) {
                 MultiblockedExtendedCompat.LOGGER.info("started with {} source", initialSource);
-                if (initialSource >= sum) {
+                int cost = Math.min(initialSource, sum);
+                //if (initialSource >= sum) {
                     if (!simulate) {
-                        sourceTile.removeSource(sum);
-                    MultiblockedExtendedCompat.LOGGER.info("removed {} source", sum);
+                        sourceTile.removeSource(cost);
+                    MultiblockedExtendedCompat.LOGGER.info("removed {} source", cost);
                     }
-                    sum = 0;
-                }
+                    sum -= cost;
+               // }
             }
             else if (io == IO.OUT) {
-                if (initialSource + sum <= sourceTile.getMaxSource()) {
+                //if (initialSource + sum <= sourceTile.getMaxSource()) {
+                int producedSource = Math.min(sum, sourceTile.getMaxSource()-initialSource);
+                MultiblockedExtendedCompat.LOGGER.info("started with {} source", initialSource);
+                MultiblockedExtendedCompat.LOGGER.info("Attempting to produce {} Source", sum);
+                if (producedSource > 0) {
                     if (!simulate) {
-                        sourceTile.addSource(sum);
-                        MultiblockedExtendedCompat.LOGGER.info("added {} source", sum);
-                    } else {
-                        sum = 0;
+                        sourceTile.addSource(producedSource);
+                        MultiblockedExtendedCompat.LOGGER.info("added {} source", producedSource);
                     }
+                    sum -= producedSource;
                 }
+
+               // }
             }
             return sum <= 0  ? null : Collections.singletonList(sum);
         }

@@ -62,7 +62,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                examplemod {
+                mbdextcompat {
                     source sourceSets.main
                 }
             }
@@ -80,7 +80,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                examplemod {
+                mbdextcompat {
                     source sourceSets.main
                 }
             }
@@ -215,7 +215,17 @@ publishing {
         }
     }
 }
+mixin{
+    add(sourceSets.main, "mixins.${mod_id}.refmap.json")
 
+    config("mixins.mbdextcompat.json")
+
+    debug.verbose = true
+    debug.export = true
+    dumpTargetOnFailure = true
+
+    quiet
+}
 
 // Prevent Mixin annotation processor from getting into IDEA's annotation processor settings
 // Copied from Botania
