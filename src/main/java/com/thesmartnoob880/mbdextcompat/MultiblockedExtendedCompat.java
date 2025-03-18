@@ -3,6 +3,7 @@ package com.thesmartnoob880.mbdextcompat;
 import com.lowdragmc.multiblocked.api.registry.MbdCapabilities;
 import com.mojang.logging.LogUtils;
 import com.thesmartnoob880.mbdextcompat.arsnouveau.capability.SourceMultiblockCapability;
+import com.thesmartnoob880.mbdextcompat.elementalcraft.capability.ElementMultiblockCapability;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -10,6 +11,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
@@ -39,8 +41,10 @@ public class MultiblockedExtendedCompat
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-
-        MbdCapabilities.registerCapability(SourceMultiblockCapability.CAP);
+        if (ModList.get().isLoaded("ars_nouveau"))
+            MbdCapabilities.registerCapability(SourceMultiblockCapability.CAP);
+        if (ModList.get().isLoaded("elementalcraft"))
+            MbdCapabilities.registerCapability(ElementMultiblockCapability.CAP);
     }
 
     private void setup(final FMLCommonSetupEvent event)
