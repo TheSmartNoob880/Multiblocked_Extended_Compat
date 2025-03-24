@@ -7,9 +7,7 @@ import com.lowdragmc.multiblocked.api.capability.proxy.CapCapabilityProxy;
 import com.lowdragmc.multiblocked.api.capability.proxy.CapabilityProxy;
 import com.lowdragmc.multiblocked.api.gui.recipe.ContentWidget;
 import com.lowdragmc.multiblocked.api.recipe.Recipe;
-import com.thesmartnoob880.mbdextcompat.MultiblockedExtendedCompat;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.common.capabilities.Capability;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import sirttas.elementalcraft.api.element.ElementType;
@@ -21,7 +19,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ElementMultiblockCapability extends MultiblockCapability<ElementStack> {
     public static final ElementMultiblockCapability CAP = new ElementMultiblockCapability();
@@ -32,15 +29,16 @@ public class ElementMultiblockCapability extends MultiblockCapability<ElementSta
 
     @Override
     public ElementStack defaultContent() {
-        return new ElementStack(ElementType.NONE,1000);
+        return new ElementStack(ElementType.AIR,1000);
     }
 
     //todo fix this
 
-//    @Override
-//    public ContentWidget<? super ElementStack> createContentWidget() {
-//        return super.createContentWidget();
-//    }
+
+    @Override
+    public ContentWidget<? super ElementStack> createContentWidget() {
+        return new ElementStackContentWidget();
+    }
 
     @Override
     public boolean isBlockHasCapability(@NotNull IO io, @NotNull BlockEntity blockEntity) {
@@ -87,7 +85,7 @@ public class ElementMultiblockCapability extends MultiblockCapability<ElementSta
                         .reduce(0, Integer::sum);
                 if (elementamount > 0)
                     requiredElements.put(element, elementamount);
-                MultiblockedExtendedCompat.LOGGER.info("Sum of element {} : {}", element.getSerializedName(), elementamount);
+                //MultiblockedExtendedCompat.LOGGER.info("Sum of element {} : {}", element.getSerializedName(), elementamount);
             });
             if (io == IO.IN){
                 for (ElementType elementType : requiredElements.keySet()) {

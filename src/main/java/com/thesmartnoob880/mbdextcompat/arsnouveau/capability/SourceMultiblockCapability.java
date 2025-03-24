@@ -37,7 +37,6 @@ public class SourceMultiblockCapability extends MultiblockCapability<Integer> {
     @Override
     public boolean isBlockHasCapability(@NotNull IO io, @NotNull BlockEntity blockEntity) {
         return blockEntity instanceof ISourceTile;
-        //TODO prevent illegal sourceio
     }
 
     @Override
@@ -109,7 +108,7 @@ public class SourceMultiblockCapability extends MultiblockCapability<Integer> {
             else if (io == IO.OUT) {
                 //if (initialSource + sum <= sourceTile.getMaxSource()) {
                 int producedSource = Math.min(sum, sourceTile.getMaxSource()-initialSource);
-                MultiblockedExtendedCompat.LOGGER.info("started with {} source", initialSource);
+                MultiblockedExtendedCompat.LOGGER.info("started with {} source in multiblock", initialSource);
                 MultiblockedExtendedCompat.LOGGER.info("Attempting to produce {} Source", sum);
                 if (producedSource > 0) {
                     if (!simulate) {

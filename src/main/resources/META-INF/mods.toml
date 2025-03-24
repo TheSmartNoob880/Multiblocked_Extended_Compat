@@ -47,12 +47,12 @@ An addon mod for Multiblocked that adds aditional compatability with other mods.
     side="BOTH"
 # Here's another dependency
 
-[[dependencies.mbdextcompat]]
-    modId="ars_nouveau"
-    mandatory=true
-    versionRange="[2.5.0,)"
-    ordering="AFTER"
-    side="BOTH"
+#[[dependencies.mbdextcompat]]
+    #modId="ars_nouveau"
+    #mandatory=true
+    #versionRange="[2.5.0,)"
+    #ordering="AFTER"
+    #side="BOTH"
 
 [[dependencies.mbdextcompat]]
     modId="multiblocked"

@@ -30,6 +30,9 @@ public class MultiblockedExtendedCompat
 
     public static final String MODID = "mbdextcompat";
 
+    public static final boolean isANLoaded = ModList.get().isLoaded("ars_nouveau");
+
+    public static final boolean isECLoaded = ModList.get().isLoaded("elementalcraft");
     public MultiblockedExtendedCompat()
     {
         // Register the setup method for modloading
@@ -41,9 +44,9 @@ public class MultiblockedExtendedCompat
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-        if (ModList.get().isLoaded("ars_nouveau"))
+        if (isANLoaded)
             MbdCapabilities.registerCapability(SourceMultiblockCapability.CAP);
-        if (ModList.get().isLoaded("elementalcraft"))
+        if (isECLoaded)
             MbdCapabilities.registerCapability(ElementMultiblockCapability.CAP);
     }
 
@@ -57,7 +60,7 @@ public class MultiblockedExtendedCompat
     private void enqueueIMC(final InterModEnqueueEvent event)
     {
         // Some example code to dispatch IMC to another mod
-        InterModComms.sendTo("examplemod", "helloworld", () -> { LOGGER.info("Hello world from the MDK"); return "Hello world";});
+        InterModComms.sendTo("mbdextcompat", "helloworld", () -> { LOGGER.info("Hello world from the MDK"); return "Hello world";});
     }
 
     private void processIMC(final InterModProcessEvent event)
@@ -88,4 +91,8 @@ public class MultiblockedExtendedCompat
             LOGGER.info("HELLO from Register Block");
         }
     }
+    public static RuntimeException throwMissingRequiredModException(String modid) {
+       return new RuntimeException("Cannot invoke features that require Mod '"+ modid +"' without it being present!");
+    }
 }
+

@@ -166,7 +166,8 @@ dependencies {
 
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
 
-    implementation fg.deobf("com.hollingsworth.ars_nouveau:ars_nouveau-${mc_version}:${ars_version}")
+    //implementation fg.deobf("com.hollingsworth.ars_nouveau:ars_nouveau-${mc_version}:${ars_version}")
+    compileOnly fg.deobf("com.hollingsworth.ars_nouveau:ars_nouveau-${mc_version}:${ars_version}")
     runtimeOnly fg.deobf("software.bernie.geckolib:geckolib-forge-1.18:${gecko_version}")
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${mc_version}-${curio_version}")
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${mc_version}-71.1")
@@ -186,9 +187,9 @@ dependencies {
     implementation fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
 
     //Elementalcraft and datapackAnvil
-    //compileOnly fg.deobf("sirttas.elementalcraft:ElementalCraft:${elementalcraft_version}:api")
+    compileOnly fg.deobf("sirttas.elementalcraft:ElementalCraft:${elementalcraft_version}")
     implementation fg.deobf("sirttas.elementalcraft:ElementalCraft:${elementalcraft_version}")
-    compileOnly fg.deobf("sirttas.dpanvil:DPAnvil:${dpanvil_version}:api")
+    compileOnly fg.deobf("sirttas.dpanvil:DPAnvil:${dpanvil_version}")
     runtimeOnly fg.deobf("sirttas.dpanvil:DPAnvil:${dpanvil_version}")
 }
 

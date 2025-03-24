@@ -5,7 +5,15 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import sirttas.elementalcraft.api.element.ElementType;
 
-public record ElementStack(ElementType element, int amount) {
+public class ElementStack {
+
+    private ElementType element;
+    private int amount;
+
+    public ElementStack(ElementType element, int amount){
+        this.element = element;
+        this.amount = amount;
+    }
     public static ElementStack fromJson(JsonElement json) {
         JsonObject elementData = json.getAsJsonObject();
         ElementType element = ElementType.byName(elementData.get("element").getAsString());
@@ -18,5 +26,21 @@ public record ElementStack(ElementType element, int amount) {
         json.add("element", new JsonPrimitive(element.getSerializedName()));
         json.add("amount", new JsonPrimitive(amount));
         return json;
+    }
+
+    public void ChangeElementAmount(int newamount) {
+        amount=newamount;
+    }
+
+    public int amount() {
+        return amount;
+    }
+
+    public ElementType element() {
+        return element;
+    }
+
+    public static ElementStack of(String element, int amount){
+        return new ElementStack(ElementType.byName(element.toLowerCase()), amount);
     }
 }
