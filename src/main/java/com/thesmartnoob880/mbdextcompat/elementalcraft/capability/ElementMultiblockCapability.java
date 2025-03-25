@@ -32,9 +32,6 @@ public class ElementMultiblockCapability extends MultiblockCapability<ElementSta
         return new ElementStack(ElementType.AIR,1000);
     }
 
-    //todo fix this
-
-
     @Override
     public ContentWidget<? super ElementStack> createContentWidget() {
         return new ElementStackContentWidget();
@@ -85,7 +82,6 @@ public class ElementMultiblockCapability extends MultiblockCapability<ElementSta
                         .reduce(0, Integer::sum);
                 if (elementamount > 0)
                     requiredElements.put(element, elementamount);
-                //MultiblockedExtendedCompat.LOGGER.info("Sum of element {} : {}", element.getSerializedName(), elementamount);
             });
             if (io == IO.IN){
                 for (ElementType elementType : requiredElements.keySet()) {

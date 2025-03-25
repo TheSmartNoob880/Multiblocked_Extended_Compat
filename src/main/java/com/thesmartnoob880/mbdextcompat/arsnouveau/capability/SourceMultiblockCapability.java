@@ -97,16 +97,13 @@ public class SourceMultiblockCapability extends MultiblockCapability<Integer> {
             if (io == IO.IN) {
                 MultiblockedExtendedCompat.LOGGER.info("started with {} source", initialSource);
                 int cost = Math.min(initialSource, sum);
-                //if (initialSource >= sum) {
                     if (!simulate) {
                         sourceTile.removeSource(cost);
                     MultiblockedExtendedCompat.LOGGER.info("removed {} source", cost);
                     }
                     sum -= cost;
-               // }
             }
             else if (io == IO.OUT) {
-                //if (initialSource + sum <= sourceTile.getMaxSource()) {
                 int producedSource = Math.min(sum, sourceTile.getMaxSource()-initialSource);
                 MultiblockedExtendedCompat.LOGGER.info("started with {} source in multiblock", initialSource);
                 MultiblockedExtendedCompat.LOGGER.info("Attempting to produce {} Source", sum);
@@ -117,8 +114,6 @@ public class SourceMultiblockCapability extends MultiblockCapability<Integer> {
                     }
                     sum -= producedSource;
                 }
-
-               // }
             }
             return sum <= 0  ? null : Collections.singletonList(sum);
         }

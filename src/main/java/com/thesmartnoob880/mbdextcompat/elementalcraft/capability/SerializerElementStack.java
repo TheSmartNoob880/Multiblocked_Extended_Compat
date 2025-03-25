@@ -1,9 +1,7 @@
 package com.thesmartnoob880.mbdextcompat.elementalcraft.capability;
 
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.lowdragmc.multiblocked.api.recipe.serde.content.IContentSerializer;
-import sirttas.elementalcraft.api.element.ElementType;
 
 public class SerializerElementStack implements IContentSerializer<ElementStack> {
     @Override
@@ -22,5 +20,5 @@ public class SerializerElementStack implements IContentSerializer<ElementStack> 
     }
 
     public static final SerializerElementStack INSTANCE = new SerializerElementStack();
-    private SerializerElementStack(){};
+    private SerializerElementStack(){}
 }

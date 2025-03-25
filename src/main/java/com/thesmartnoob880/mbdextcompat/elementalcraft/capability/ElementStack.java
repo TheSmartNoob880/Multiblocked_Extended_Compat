@@ -7,7 +7,7 @@ import sirttas.elementalcraft.api.element.ElementType;
 
 public class ElementStack {
 
-    private ElementType element;
+    private final ElementType element;
     private int amount;
 
     public ElementStack(ElementType element, int amount){
