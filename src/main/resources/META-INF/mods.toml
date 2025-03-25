@@ -1,22 +1,17 @@
 modLoader="javafml"
 loaderVersion="[35,)"
-# A URL to refer people to when problems occur with this mod
-issueTrackerURL="http://my.issue.tracker/" #optional
-
+issueTrackerURL="https://github.com/TheSmartNoob880/Multiblocked_Extended_Compat/issues"
 license="GNU Lesser General Public License v3.0"
-# A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]]
 modId="mbdextcompat"
 version="1.0"
 displayName="Multiblocked Extended Compatability"
-# A URL for the "homepage" for this mod, displayed in the mod UI
-#displayURL="http://example.com/" #optional
-# A file name (in the root of the mod JAR) containing a logo for display
-#logoFile="mbdextcompat.png" #optional
-credits="Thanks to KilaBash and Emperdog for helping me get this mod functional." #optional
+displayURL="https://github.com/TheSmartNoob880/Multiblocked_Extended_Compat"
+logoFile="mbdextcompat_logo.png"
+credits="Thanks to KilaBash and Emperdog for helping me get this mod functional."
 authors="TheSmartNoob880, Emperdog"
 description='''
-An addon mod for Multiblocked that adds aditional compatability with other mods.
+An addon mod for Multiblocked that adds additional compatibility with other mods.
 '''
 [[dependencies.mbdextcompat]]
     modId="forge"
