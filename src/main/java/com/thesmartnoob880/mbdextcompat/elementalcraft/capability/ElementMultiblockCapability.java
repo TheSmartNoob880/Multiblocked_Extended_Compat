@@ -24,7 +24,7 @@ public class ElementMultiblockCapability extends MultiblockCapability<ElementSta
     public static final ElementMultiblockCapability CAP = new ElementMultiblockCapability();
 
     protected ElementMultiblockCapability() {
-        super("elementalcraft.element", 0x03fc6b, SerializerElementStack.INSTANCE);
+        super("elementalcraft.element", 0xFFeaf2e6, SerializerElementStack.INSTANCE);
     }
 
     @Override

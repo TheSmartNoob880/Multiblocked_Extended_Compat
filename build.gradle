@@ -189,7 +189,7 @@ jar {
         attributes([
                 "Specification-Title": "Multiblocked Addon",
                 "Specification-Vendor": "mbdextcompat",
-                "Specification-Version": "1", // We are version 1 of ourselves
+                "Specification-Version": "1.1", // We are version 1 of ourselves
                 "Implementation-Title": project.name,
                 "Implementation-Version": "${version}",
                 "Implementation-Vendor" :"mbdextcompat",

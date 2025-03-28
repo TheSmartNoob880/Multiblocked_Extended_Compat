@@ -26,7 +26,7 @@ public class SourceMultiblockCapability extends MultiblockCapability<Integer> {
     public static final SourceMultiblockCapability CAP = new SourceMultiblockCapability();
 
     protected SourceMultiblockCapability() {
-        super("arsnouveau.source", 0xFF19B4, SerializerInteger.INSTANCE);
+        super("arsnouveau.source", 0xFFFF19B4, SerializerInteger.INSTANCE);
     }
 
     @Override
